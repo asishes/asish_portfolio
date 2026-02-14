@@ -1,0 +1,387 @@
+@use './variables' as *;
+@use './mixins' as *;
+@use './animations' as *;
+
+// GOOGLE FONTS IMPORT
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* ==================== RESET & BASE STYLES ==================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  @include scrollbar;
+}
+
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  color: $color-text-primary;
+  background: $color-primary-dark;
+  line-height: $line-height-normal;
+  overflow-x: hidden;
+  letter-spacing: $letter-spacing-normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+
+h1 {
+  @include heading($font-size-6xl, $font-weight-extrabold);
+  margin-bottom: $space-xl;
+
+  @include md {
+    @include heading($font-size-4xl, $font-weight-extrabold);
+  }
+
+  @include sm {
+    @include heading($font-size-3xl, $font-weight-extrabold);
+  }
+}
+
+h2 {
+  @include heading($font-size-5xl, $font-weight-bold);
+  margin-bottom: $space-xl;
+
+  @include md {
+    @include heading($font-size-3xl, $font-weight-bold);
+  }
+
+  @include sm {
+    @include heading($font-size-2xl, $font-weight-bold);
+  }
+}
+
+h3 {
+  @include heading($font-size-3xl, $font-weight-bold);
+  margin-bottom: $space-lg;
+
+  @include md {
+    @include heading($font-size-2xl, $font-weight-bold);
+  }
+}
+
+h4 {
+  @include heading($font-size-2xl, $font-weight-semibold);
+  margin-bottom: $space-lg;
+
+  @include md {
+    @include heading($font-size-xl, $font-weight-semibold);
+  }
+}
+
+h5 {
+  @include heading($font-size-lg, $font-weight-semibold);
+  margin-bottom: $space-sm;
+}
+
+h6 {
+  @include heading($font-size-base, $font-weight-semibold);
+  margin-bottom: $space-sm;
+}
+
+p {
+  @include body-text($font-size-base, $font-weight-normal, $color-text-secondary);
+  margin-bottom: $space-lg;
+  letter-spacing: $letter-spacing-normal;
+}
+
+small {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+/* ==================== LINKS ==================== */
+
+a {
+  color: $color-accent-mocha;
+  text-decoration: none;
+  @include transition-all;
+  position: relative;
+  font-weight: 500;
+
+  &:hover {
+    color: $color-accent-green;
+    text-decoration: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $color-accent-mocha, $color-accent-green);
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+/* ==================== BUTTONS ==================== */
+
+button {
+  cursor: pointer;
+  @include transition-all;
+  border: none;
+  font-family: $font-family-primary;
+
+  &:focus-visible {
+    outline: 2px solid $color-accent-mocha;
+    outline-offset: 2px;
+  }
+}
+
+.btn {
+  @include btn-base;
+
+  &.btn-primary {
+    @include btn-primary;
+  }
+
+  &.btn-secondary {
+    @include btn-secondary;
+  }
+
+  &.btn-sm {
+    padding: $space-sm $space-md;
+    font-size: $font-size-sm;
+  }
+
+  &.btn-lg {
+    padding: $space-lg $space-2xl;
+    font-size: $font-size-lg;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* ==================== INPUTS ==================== */
+
+input,
+textarea,
+select {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  color: $color-text-primary;
+  background: #1E293B;
+  border: 1px solid #475569;
+  border-radius: $radius-md;
+  padding: $space-md;
+  @include transition-all;
+  letter-spacing: $letter-spacing-normal;
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent-mocha;
+    background: #0F172A;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* ==================== UTILITY CLASSES ==================== */
+
+.container {
+  @include container;
+}
+
+.section {
+  @include section;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-between {
+  @include flex-between;
+}
+
+.grid {
+  display: grid;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.bold {
+  font-weight: $font-weight-bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.truncate {
+  @include ellipsis(1);
+}
+
+.line-clamp-2 {
+  @include ellipsis(2);
+}
+
+.line-clamp-3 {
+  @include ellipsis(3);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+/* ==================== SCROLLBAR ==================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-accent-mocha;
+  border-radius: $radius-lg;
+  opacity: 0.3;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+/* ==================== DARK MODE SUPPORT ==================== */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: $color-primary-dark;
+    color: $color-text-primary;
+  }
+}
+
+/* ==================== CREATIVE CARDS ==================== */
+
+.card-creative {
+  @include glassmorphism;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    border-color: rgba(34, 211, 238, 0.5);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.25);
+    transform: translateY(-4px);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.card-glow {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(34, 211, 238, 0.05));
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: $radius-xl;
+  padding: $space-lg;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ==================== RESPONSIVE UTILITIES ==================== */
+
+@include sm {
+  h1 {
+    word-break: break-word;
+  }
+
+  button,
+  .btn {
+    width: 100%;
+  }
+}

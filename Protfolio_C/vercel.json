@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": "npm run build:prod",
-  "outputDirectory": "dist/portfolio/browser",
+  "outputDirectory": "dist/portfolio",
   "framework": "angular",
   "rewrites": [
     {

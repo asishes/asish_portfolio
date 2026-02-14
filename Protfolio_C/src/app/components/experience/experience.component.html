@@ -1,0 +1,53 @@
+<section id="experience" class="experience">
+  <div class="experience-container">
+    <!-- Section Header -->
+    <div class="section-header animate-float-up">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Experience</h2>
+      <p class="section-subtitle">My Professional Journey</p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline animate-slide-in-up" style="animation-delay: 100ms">
+      <div *ngFor="let exp of experiences; let i = index; let last = last" class="timeline-item" [class.active]="exp.isActive">
+        <!-- Timeline Node -->
+        <div class="timeline-node" [class.active]="exp.isActive">
+          <div class="node-dot" [class.active]="exp.isActive"></div>
+          <div *ngIf="!last" class="node-line"></div>
+        </div>
+
+        <!-- Timeline Content -->
+        <div class="timeline-content animate-stagger-{{ i + 1 }}" [style.animation-delay]="(i * 200) + 'ms'">
+          <!-- Active Badge -->
+          <div *ngIf="exp.isActive" class="active-badge">
+            <span class="badge-dot"></span>
+            Currently Working
+          </div>
+
+          <!-- Header -->
+          <div class="exp-header">
+            <h3 class="exp-position">{{ exp.position }}</h3>
+            <p class="exp-company">{{ exp.company }}</p>
+          </div>
+
+          <!-- Duration -->
+          <div class="exp-duration">
+            <span class="duration-icon">📅</span>
+            <span>{{ exp.duration }}</span>
+          </div>
+
+          <!-- Responsibilities -->
+          <ul class="exp-list">
+            <li *ngFor="let responsibility of exp.responsibilities" class="exp-item">
+              <span class="exp-icon">✔</span>
+              <span>{{ responsibility }}</span>
+            </li>
+          </ul>
+
+          <!-- Card Decoration -->
+          <div class="card-decoration"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

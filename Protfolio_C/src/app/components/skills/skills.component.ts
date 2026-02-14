@@ -18,11 +18,11 @@ interface Skill {
 export class SkillsComponent {
   skills: Skill[] = [
     // Frontend
-    { name: 'Angular', icon: '⚛️', category: 'frontend', proficiency: 70 },
-    { name: 'HTML5', icon: '🏗️', category: 'frontend', proficiency: 90 },
-    { name: 'CSS/SCSS', icon: '🎨', category: 'frontend', proficiency: 85 },
-    { name: 'JavaScript', icon: '⚡', category: 'frontend', proficiency: 85 },
-    { name: 'jQuery', icon: '🔧', category: 'frontend', proficiency: 75 },
+    { name: 'Angular', icon: '⚛️', category: 'frontend', proficiency: 30 },
+    { name: 'HTML5', icon: '🏗️', category: 'frontend', proficiency: 50 },
+    { name: 'CSS/SCSS', icon: '🎨', category: 'frontend', proficiency: 55 },
+    { name: 'JavaScript', icon: '⚡', category: 'frontend', proficiency: 65 },
+    { name: 'jQuery', icon: '🔧', category: 'frontend', proficiency: 65 },
 
     // Backend
     { name: 'C#', icon: '💻', category: 'backend', proficiency: 95 },
